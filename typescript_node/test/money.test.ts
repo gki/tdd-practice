@@ -1,3 +1,3 @@
-describe('money test',() => {
-    it.todo('check jest')
+describe("money test", () => {
+  it.todo("check jest");
 });
