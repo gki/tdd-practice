@@ -1,6 +1,13 @@
-export const sum = (a: number, b: number) => {
-  if ('development' === process.env.NODE_ENV) {
-    console.log('boop');
+export class Dollar {
+  amount: number
+  constructor(i: number) {
+    this.amount = i
   }
-  return a + b;
-};
+
+
+
+
+  times(times: number) {
+    this.amount *= times
+  }
+}
