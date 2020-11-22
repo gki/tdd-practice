@@ -22,10 +22,11 @@ describe("money test", () => {
     expect(new Dollar(5).equals(new Dollar(6))).toBe(false);
     expect(new Franc(5).equals(new Franc(5))).toBe(true);
     expect(new Franc(5).equals(new Franc(6))).toBe(false);
+    expect(new Franc(5).equals(new Dollar(5))).toBe(false);
   });
   test.todo("hashcode");
   test.todo("DollarとFrancの重複");
 
   test.todo("hashcodeの一般化");
-  test.todo("DollarとFrancの比較");
+  test.todo("通貨の概念");
 });

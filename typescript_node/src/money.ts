@@ -2,7 +2,10 @@ class Money {
   amount: number;
 
   equals(other: any): boolean {
-    return this.amount === (other as Money).amount;
+    return (
+      this.amount === (other as Money).amount &&
+      this.constructor.name === other.constructor.name
+    );
   }
 }
 export class Dollar extends Money {
