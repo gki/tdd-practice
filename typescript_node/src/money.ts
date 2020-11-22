@@ -1,14 +1,24 @@
 export abstract class Money {
   amount: number;
+  currencyShort: string;
+
+  constructor(initialAmount: number, currency: string) {
+    this.amount = initialAmount;
+    this.currencyShort = currency;
+  }
 
   static dollar(amount: number): Money {
-    return new Dollar(amount);
+    return new Dollar(amount, "USD");
   }
   static franc(amount: number): Money {
-    return new Franc(amount);
+    return new Franc(amount, "CHF");
   }
 
   abstract times(i: number): Money;
+  currency(): string {
+    return this.currencyShort;
+  }
+
   equals(other: any): boolean {
     return (
       this.amount === (other as Money).amount &&
@@ -16,26 +26,23 @@ export abstract class Money {
     );
   }
 }
+
 export class Dollar extends Money {
-  constructor(initialAmount: number) {
-    super();
-    this.amount = initialAmount;
+  constructor(initialAmount: number, currency: string) {
+    super(initialAmount, currency);
   }
 
   times(n: number): Money {
-    return new Dollar(this.amount * n);
+    return Money.dollar(this.amount * n);
   }
 }
 
 export class Franc extends Money {
-  amount: number;
-
-  constructor(initialAmount: number) {
-    super();
-    this.amount = initialAmount;
+  constructor(initialAmount: number, currency: string) {
+    super(initialAmount, currency);
   }
 
   times(n: number): Money {
-    return new Franc(this.amount * n);
+    return Money.franc(this.amount * n);
   }
 }

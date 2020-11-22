@@ -13,6 +13,11 @@ describe("money test", () => {
     expect(five.times(2)).toStrictEqual(Money.franc(10));
     expect(five.times(3)).toStrictEqual(Money.franc(15));
   });
+  test("通貨のテスト", () => {
+    expect(Money.dollar(1).currency()).toBe("USD");
+    expect(Money.franc(1).currency()).toBe("CHF");
+  });
+  test.todo("このテストを消すか？？↑↑");
 
   test.todo("nullとの比較");
   test.todo("他クラスとの比較");
