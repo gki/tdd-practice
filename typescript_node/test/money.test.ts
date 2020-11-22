@@ -1,28 +1,28 @@
-import { Dollar, Franc } from "../src/money";
+import { Dollar, Franc, Money } from "../src/money";
 
 describe("money test", () => {
   test.todo("$5+10CHF=10 (レートが2:1の場合)");
   test("$5*2=$10", () => {
-    const five: Dollar = new Dollar(5);
-    expect(five.times(2)).toStrictEqual(new Dollar(10));
-    expect(five.times(3)).toStrictEqual(new Dollar(15));
+    const five: Money = Money.dollar(5);
+    expect(five.times(2)).toStrictEqual(Money.dollar(10));
+    expect(five.times(3)).toStrictEqual(Money.dollar(15));
   });
 
   test("5CHF*2=10CHF", () => {
-    const five: Franc = new Franc(5);
-    expect(five.times(2)).toStrictEqual(new Franc(10));
-    expect(five.times(3)).toStrictEqual(new Franc(15));
+    const five: Franc = Money.franc(5);
+    expect(five.times(2)).toStrictEqual(Money.franc(10));
+    expect(five.times(3)).toStrictEqual(Money.franc(15));
   });
 
   test.todo("nullとの比較");
   test.todo("他クラスとの比較");
   test.todo("Moneyの丸め処理をどうするか");
   test("equals", () => {
-    expect(new Dollar(5).equals(new Dollar(5))).toBe(true);
-    expect(new Dollar(5).equals(new Dollar(6))).toBe(false);
-    expect(new Franc(5).equals(new Franc(5))).toBe(true);
-    expect(new Franc(5).equals(new Franc(6))).toBe(false);
-    expect(new Franc(5).equals(new Dollar(5))).toBe(false);
+    expect(Money.dollar(5).equals(Money.dollar(5))).toBe(true);
+    expect(Money.dollar(5).equals(Money.dollar(6))).toBe(false);
+    expect(Money.franc(5).equals(Money.franc(5))).toBe(true);
+    expect(Money.franc(5).equals(Money.franc(6))).toBe(false);
+    expect(Money.franc(5).equals(Money.dollar(5))).toBe(false);
   });
   test.todo("hashcode");
   test.todo("DollarとFrancの重複");
