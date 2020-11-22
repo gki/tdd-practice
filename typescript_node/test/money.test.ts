@@ -1,7 +1,16 @@
-import { Money } from "../src/money";
+import { Money, Bank, Expression } from "../src/money";
 
 describe("money test", () => {
   test.todo("$5+10CHF=10 (レートが2:1の場合)");
+
+  test("単純な足し算", () => {
+    const five: Money = Money.dollar(5);
+    const sum: Expression = five.plus(five);
+    const bank: Bank = new Bank();
+    const reduced: Money = bank.reduce(sum, "USD");
+    expect(reduced).toEqual(Money.dollar(10));
+  });
+
   test("$5*2=$10", () => {
     const five: Money = Money.dollar(5);
     expect(five.times(2)).toEqual(Money.dollar(10));
@@ -12,7 +21,6 @@ describe("money test", () => {
     expect(Money.dollar(1).currency()).toBe("USD");
     expect(Money.franc(1).currency()).toBe("CHF");
   });
-  test.todo("このテストを消すか？？↑↑");
 
   test.todo("nullとの比較");
   test.todo("他クラスとの比較");

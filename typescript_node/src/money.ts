@@ -1,4 +1,12 @@
-export class Money {
+export interface Expression {}
+
+export class Bank {
+  reduce(source: Expression, to: string) {
+    return Money.dollar(10);
+  }
+}
+
+export class Money implements Expression {
   amount: number;
   currencyShort: string;
 
@@ -12,6 +20,10 @@ export class Money {
   }
   static franc(amount: number): Money {
     return new Money(amount, "CHF");
+  }
+
+  plus(added: Money): Expression {
+    return new Money(this.amount + added.amount, this.currency());
   }
 
   times(i: number): Money {
