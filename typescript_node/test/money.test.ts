@@ -12,4 +12,9 @@ describe("money test", () => {
 
   test.todo("amountをprivateにする");
   test.todo("Moneyの丸め処理をどうするか");
+  test("equals", () => {
+    expect(new Dollar(5).equals(new Dollar(5))).toBe(true);
+    expect(new Dollar(5).equals(new Dollar(6))).toBe(false);
+  });
+  test.todo("hashcode");
 });
