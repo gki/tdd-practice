@@ -1,4 +1,4 @@
-import { Dollar, Franc, Money } from "../src/money";
+import { Money } from "../src/money";
 
 describe("money test", () => {
   test.todo("$5+10CHF=10 (レートが2:1の場合)");
@@ -8,11 +8,6 @@ describe("money test", () => {
     expect(five.times(3)).toEqual(Money.dollar(15));
   });
 
-  test("5CHF*2=10CHF", () => {
-    const five: Franc = Money.franc(5);
-    expect(five.times(2)).toEqual(Money.franc(10));
-    expect(five.times(3)).toEqual(Money.franc(15));
-  });
   test("通貨のテスト", () => {
     expect(Money.dollar(1).currency()).toBe("USD");
     expect(Money.franc(1).currency()).toBe("CHF");
@@ -25,17 +20,11 @@ describe("money test", () => {
   test("equals", () => {
     expect(Money.dollar(5).equals(Money.dollar(5))).toBe(true);
     expect(Money.dollar(5).equals(Money.dollar(6))).toBe(false);
-    expect(Money.franc(5).equals(Money.franc(5))).toBe(true);
-    expect(Money.franc(5).equals(Money.franc(6))).toBe(false);
     expect(Money.franc(5).equals(Money.dollar(5))).toBe(false);
-  });
-  test("クラスが違っても正しく比較される", () => {
-    expect(new Money(10, "CHF").equals(new Franc(10, "CHF"))).toBe(true);
   });
 
   test.todo("hashcode");
   test.todo("DollarとFrancの重複");
 
   test.todo("hashcodeの一般化");
-  test.todo("通貨の概念");
 });
