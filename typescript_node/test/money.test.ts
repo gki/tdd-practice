@@ -10,4 +10,8 @@ describe("money test", () => {
     // assert
     expect(usd.amount).toBe(10);
   });
+
+  test.todo("amountをprivateにする");
+  test.todo("Dollarの副作用をどうするか");
+  test.todo("Moneyの丸め処理をどうするか");
 });
