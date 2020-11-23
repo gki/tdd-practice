@@ -3,7 +3,12 @@ import { Expression, Sum } from "../src/expression";
 import { Money } from "../src/money";
 
 describe("money test", () => {
-  test.todo("$5+10CHF=10 (レートが2:1の場合)");
+  test("レートを設定してUSDからCHFに変換する", () => {
+    const bank = new Bank();
+    bank.addRate("CHF", "USD", 2);
+    const result = bank.reduce(Money.franc(2), "USD");
+    expect(result).toEqual(Money.dollar(1));
+  });
 
   test("単純な足し算", () => {
     const five: Money = Money.dollar(5);
@@ -21,7 +26,7 @@ describe("money test", () => {
 
   test("plusはSumを返却する", () => {
     const five: Money = Money.dollar(5);
-    const sum: Sum = five.plus(five);
+    const sum: Sum = five.plus(five) as Sum;
     expect(sum.augend).toEqual(five);
     expect(sum.addend).toEqual(five);
   });
@@ -44,10 +49,16 @@ describe("money test", () => {
     expect(Money.franc(5).equals(Money.dollar(5))).toBe(false);
   });
 
-  test.todo("$5+$5がMoneyをかえす");
   test("Bank.reduce(Money)", () => {
     const bank = new Bank();
     const result = bank.reduce(Money.dollar(1), "USD");
     expect(result).toEqual(Money.dollar(1));
   });
+
+  test("test identity rate", () => {
+    expect(new Bank().rate("USD", "USD")).toBe(1);
+  });
+
+  test.todo("$5+$5がMoneyをかえす");
+  test.todo("$5+10CHF=$10");
 });
