@@ -1,10 +1,4 @@
-export interface Expression {}
-
-export class Bank {
-  reduce(source: Expression, to: string) {
-    return Money.dollar(10);
-  }
-}
+import { Expression, Sum } from "./expression";
 
 export class Money implements Expression {
   amount: number;
@@ -23,7 +17,11 @@ export class Money implements Expression {
   }
 
   plus(added: Money): Expression {
-    return new Money(this.amount + added.amount, this.currency());
+    return new Sum(this, added);
+  }
+
+  reduce(to: string): Money {
+    return this;
   }
 
   times(i: number): Money {
