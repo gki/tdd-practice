@@ -17,7 +17,7 @@ export class Money implements Expression {
     return new Money(amount, "CHF");
   }
 
-  plus(added: Money): Expression {
+  plus(added: Expression): Expression {
     return new Sum(this, added);
   }
 
@@ -26,7 +26,7 @@ export class Money implements Expression {
     return new Money(this.amount / rate, to);
   }
 
-  times(i: number): Money {
+  times(i: number): Expression {
     return new Money(this.amount * i, this.currencyShort);
   }
   currency(): string {

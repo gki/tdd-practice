@@ -60,5 +60,12 @@ describe("money test", () => {
   });
 
   test.todo("$5+$5がMoneyをかえす");
-  test.todo("$5+10CHF=$10");
+  test("$5+10CHF=$10", () => {
+    const fiveUSD: Expression = Money.dollar(5);
+    const tenCHF: Expression = Money.franc(10);
+    const bank = new Bank();
+    bank.addRate("CHF", "USD", 2);
+    const result = bank.reduce(fiveUSD.plus(tenCHF), "USD");
+    expect(result).toEqual(Money.dollar(10));
+  });
 });
