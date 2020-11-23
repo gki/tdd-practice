@@ -3,13 +3,13 @@ import { Money } from "./money";
 import { Pair } from "./pair";
 
 export class Bank {
-  private rates: Map<Symbol, number> = new Map();
+  private rates: Map<symbol, number> = new Map<symbol, number>();
 
   reduce(source: Expression, to: string): Money {
     return source.reduce(this, to);
   }
 
-  addRate(from: string, to: string, rate: number) {
+  addRate(from: string, to: string, rate: number): void {
     this.rates.set(new Pair(from, to).key, rate);
   }
 

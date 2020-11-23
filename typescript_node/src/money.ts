@@ -33,7 +33,7 @@ export class Money implements Expression {
     return this.currencyShort;
   }
 
-  equals(other: any): boolean {
+  equals(other: unknown): boolean {
     const otherMoney = other as Money;
     return (
       this.amount === otherMoney.amount &&
