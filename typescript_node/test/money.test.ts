@@ -59,7 +59,6 @@ describe("money test", () => {
     expect(new Bank().rate("USD", "USD")).toBe(1);
   });
 
-  test.todo("$5+$5がMoneyをかえす");
   test("$5+10CHF=$10", () => {
     const fiveUSD: Expression = Money.dollar(5);
     const tenCHF: Expression = Money.franc(10);
@@ -67,5 +66,25 @@ describe("money test", () => {
     bank.addRate("CHF", "USD", 2);
     const result = bank.reduce(fiveUSD.plus(tenCHF), "USD");
     expect(result).toEqual(Money.dollar(10));
+  });
+
+  test("Expression.times", () => {
+    const fiveUSD: Expression = Money.dollar(5);
+    const tenCHF: Expression = Money.franc(10);
+    const bank = new Bank();
+    bank.addRate("CHF", "USD", 2);
+    const sum: Expression = new Sum(fiveUSD, tenCHF).times(2);
+    const result = bank.reduce(sum, "USD");
+    expect(result).toEqual(Money.dollar(20));
+  });
+
+  test("Sum.plus", () => {
+    const fiveUSD: Expression = Money.dollar(5);
+    const tenCHF: Expression = Money.franc(10);
+    const bank = new Bank();
+    bank.addRate("CHF", "USD", 2);
+    const sum: Expression = new Sum(fiveUSD, tenCHF).plus(fiveUSD);
+    const result = bank.reduce(sum, "USD");
+    expect(result).toEqual(Money.dollar(15));
   });
 });
