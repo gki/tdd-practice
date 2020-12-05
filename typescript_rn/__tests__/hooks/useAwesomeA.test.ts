@@ -22,6 +22,7 @@ describe('Custom Hookのテスト方法', () => {
 
   beforeEach(() => {
     (useAwesomeB as jest.Mock).mockClear();
+    (useAwesomeD as jest.Mock).mockClear();
   });
 
   test('Custom Hookが別のCustom Hookを呼び出しているときののテスト', () => {
