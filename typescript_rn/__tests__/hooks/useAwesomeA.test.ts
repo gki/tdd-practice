@@ -29,7 +29,7 @@ describe('Custom Hookのテスト方法', () => {
     const {result} = renderHook(() => useAwesomeA());
 
     expect(result.current.awesome()).toBe(
-      `Hellow! Here are messages for you!: ${mockMessageB}, message from C!, ${mockMessageD}`,
+      `Hello! Here are messages for you!: ${mockMessageB}, message from C!, ${mockMessageD}`,
     );
   });
 });
