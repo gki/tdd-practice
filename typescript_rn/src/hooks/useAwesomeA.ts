@@ -12,7 +12,7 @@ const useAwesomeA = () => {
     const messageB = awesomeFuncB();
     const messageC = awesomeFuncC();
     const messageD = awesomeFuncD();
-    return `Hellow! Here are messages for you!: ${messageB}, ${messageC}, ${messageD}`;
+    return `Hello! Here are messages for you!: ${messageB}, ${messageC}, ${messageD}`;
   }, [awesomeFuncB, awesomeFuncC, awesomeFuncD]);
 
   return {awesome};
