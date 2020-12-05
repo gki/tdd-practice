@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {useAwesomeA} from './hooks/useAwesomeHook';
+import useAwesomeA from './hooks/useAwesomeA';
 
 const App = () => {
   const {awesome} = useAwesomeA();
